@@ -10,11 +10,6 @@ import kotlinx.android.synthetic.main.fragment_filter.*
 
 class FilterFragment : Fragment() {
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,8 +22,8 @@ class FilterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         buttonClear.setOnClickListener {
-            byName.setChecked(true)
-            tumu.setChecked(true)
+            byName.isChecked = true
+            tumu.isChecked = true
         }
 
         buttonApply.setOnClickListener {
@@ -37,8 +32,5 @@ class FilterFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
 
         }
-
     }
-
-
 }

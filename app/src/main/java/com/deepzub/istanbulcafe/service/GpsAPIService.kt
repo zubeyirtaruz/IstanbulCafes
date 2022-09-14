@@ -1,6 +1,5 @@
 package com.deepzub.istanbulcafe.service
 
-import com.deepzub.istanbulcafe.model.Cafe
 import com.deepzub.istanbulcafe.model.GpsCafe
 import io.reactivex.Single
 import retrofit2.Retrofit
@@ -15,7 +14,7 @@ class GpsAPIService {
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
-        .create(GPSAPI::class.java)
+        .create(GpsAPI::class.java)
 
     fun getDataGps(url : String): Single<GpsCafe> {
         return api.getCafeGps(url)

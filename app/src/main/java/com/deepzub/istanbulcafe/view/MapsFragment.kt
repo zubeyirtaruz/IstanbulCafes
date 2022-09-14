@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.deepzub.istanbulcafe.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -28,7 +26,6 @@ class MapsFragment : Fragment() {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cafe,17f))
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,11 +43,8 @@ class MapsFragment : Fragment() {
             lng = MapsFragmentArgs.fromBundle(it).lng
         }
 
-
-
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
-
 
 }

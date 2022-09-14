@@ -8,7 +8,7 @@ import androidx.preference.PreferenceManager
 class CustomSharedPreferences {
 
     companion object{
-        private val PREFERENCES_TIME = "preferences_time"
+        private const val PREFERENCES_TIME = "preferences_time"
 
         private var sharedPreferences: SharedPreferences? = null
 
@@ -25,9 +25,6 @@ class CustomSharedPreferences {
             sharedPreferences =PreferenceManager.getDefaultSharedPreferences(context)
             return CustomSharedPreferences()
         }
-
-
-
 
     }
 

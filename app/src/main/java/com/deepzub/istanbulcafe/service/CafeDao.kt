@@ -4,16 +4,12 @@ import androidx.room.*
 import com.deepzub.istanbulcafe.model.Cafe
 import com.deepzub.istanbulcafe.model.MyFavorite
 import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.Single
-
 
 @Dao
 interface CafeDao {
 
     @Insert
-    suspend fun insertAll(vararg  cafes: Cafe)   // vararg : Sayısı belli olmayan bir tekil objeyi farklı sayılarla vericeğimiz keyword
+    suspend fun insertAll(vararg  cafes: Cafe)
 
     @Query("SELECT * FROM cafe")
     suspend fun getAllCafes(): List<Cafe>
@@ -41,7 +37,5 @@ interface CafeDao {
 
     @Query("SELECT uuid FROM myFavoriteCafes")
     fun getIdFavoriteCafes(): Flowable<List<Int>>
-
-
 
 }

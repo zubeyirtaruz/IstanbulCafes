@@ -22,13 +22,9 @@ class CafeFeedFragment : Fragment() {
     private var bySearchCriteria = 0
     private var byWorkingHour = 0
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-
-
     }
 
     override fun onCreateView(
@@ -50,13 +46,11 @@ class CafeFeedFragment : Fragment() {
 
         }
 
-
         viewModel.refreshData()
         viewModel.getIdInSQLite()
 
         rv.layoutManager = LinearLayoutManager(context)
         rv.adapter = cafeAdapter
-
 
         swipeRefreshLayout.setOnRefreshListener {
             rv.visibility = View.GONE
@@ -68,8 +62,6 @@ class CafeFeedFragment : Fragment() {
 
         observeLiveData()
 
-
-
     }
 
     private fun observeLiveData(){
@@ -77,7 +69,6 @@ class CafeFeedFragment : Fragment() {
             cafes?.let {
                 rv.visibility = View.VISIBLE
                 cafeAdapter.updateCafeList(cafes)
-
             }
         })
 
@@ -129,27 +120,21 @@ class CafeFeedFragment : Fragment() {
         })
     }
 
-
-
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.cafe_search,menu)
         val item = menu?.findItem(R.id.action_search)
         val searchView = item?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                bySearchCriteria?.let { criteria ->
+                bySearchCriteria.let { criteria ->
                     if (criteria == 0 || criteria == R.id.byName){
                         viewModel.byNameFilter(query)
                         observeFilter()
-                    }
-                    else{
+                    } else{
                         viewModel.byFeaturesFilter(query)
                         observeFilter()
                     }
-
                 }
-
                 return true
             }
 
@@ -160,36 +145,9 @@ class CafeFeedFragment : Fragment() {
         })
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
-
-
 
 }

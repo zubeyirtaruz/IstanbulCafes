@@ -21,12 +21,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     private lateinit var binding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -35,21 +36,12 @@ class MainActivity : AppCompatActivity() {
         findViewById<Toolbar>(R.id.toolbar)
             .setupWithNavController(navController, appBarConfiguration)
 
-
         NavigationUI.setupActionBarWithNavController(this,navController)
 
-
-
-
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
-
-
-
-
 
 }

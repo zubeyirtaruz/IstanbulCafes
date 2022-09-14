@@ -59,3 +59,4 @@ data class GpsCafe(
     @SerializedName("longitude")
     val longitude: Float?)
 
+

@@ -1,35 +1,30 @@
 package com.deepzub.istanbulcafe.adapter
 
-import android.app.Application
+
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.ToggleButton
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.deepzub.istanbulcafe.R
 import com.deepzub.istanbulcafe.databinding.MyFavoritesItemCafeBinding
-import com.deepzub.istanbulcafe.model.Cafe
 import com.deepzub.istanbulcafe.model.MyFavorite
 import com.deepzub.istanbulcafe.service.CafeDatabase
-import com.deepzub.istanbulcafe.view.CafeFeedFragmentDirections
 import com.deepzub.istanbulcafe.view.MyFavoritesFragmentDirections
-import com.deepzub.istanbulcafe.viewmodel.MyFavoritesViewModel
-import kotlinx.android.synthetic.main.item_cafe.view.*
 import kotlinx.android.synthetic.main.my_favorites_item_cafe.view.*
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class FavoriteAdapter(val cafeList: ArrayList<MyFavorite>): RecyclerView.Adapter<FavoriteAdapter.MyFavoriteViewHolder>(), FavoriteClickListener {
-    class MyFavoriteViewHolder(var view: MyFavoritesItemCafeBinding): RecyclerView.ViewHolder(view.root) {
+class FavoriteAdapter(private val cafeList: ArrayList<MyFavorite>): RecyclerView.Adapter<FavoriteAdapter.MyFavoriteViewHolder>(), FavoriteClickListener {
 
-    }
+    class MyFavoriteViewHolder(var view: MyFavoritesItemCafeBinding): RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyFavoriteViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -61,6 +56,7 @@ class FavoriteAdapter(val cafeList: ArrayList<MyFavorite>): RecyclerView.Adapter
         return cafeList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateCafeList(newCafeList: List<MyFavorite>){
         cafeList.clear()
         cafeList.addAll(newCafeList)
@@ -73,6 +69,7 @@ class FavoriteAdapter(val cafeList: ArrayList<MyFavorite>): RecyclerView.Adapter
         Navigation.findNavController(v).navigate(action)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun clickedGarbage(v: ImageButton, position: Int) {
         v.setOnClickListener {
             val selectedCafeId = cafeList[position].uuid

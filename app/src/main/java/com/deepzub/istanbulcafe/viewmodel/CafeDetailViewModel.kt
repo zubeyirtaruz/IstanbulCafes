@@ -26,9 +26,6 @@ class CafeDetailViewModel(application: Application): BaseViewModel(application) 
             val cafe = dao.getcafe(uuid)
             cafeLiveData.value = cafe
         }
-
-
-
     }
 
     fun getGpsFromAPI(cafeUuid : Int){
@@ -45,8 +42,6 @@ class CafeDetailViewModel(application: Application): BaseViewModel(application) 
                     }
                 })
         )
-
-
     }
 
 
@@ -62,12 +57,6 @@ class CafeDetailViewModel(application: Application): BaseViewModel(application) 
     fun getLng() : Float? {
         return cafeGps.value?.longitude
     }
-
-
-
-
-
-
 
     override fun onCleared() {
         super.onCleared()

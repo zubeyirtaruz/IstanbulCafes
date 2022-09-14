@@ -2,8 +2,6 @@ package com.deepzub.istanbulcafe.view
 
 import android.os.Bundle
 import android.view.*
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -11,15 +9,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.deepzub.istanbulcafe.R
 import com.deepzub.istanbulcafe.databinding.FragmentCafeDetailBinding
-import com.deepzub.istanbulcafe.service.CafeDatabase
 import com.deepzub.istanbulcafe.viewmodel.CafeDetailViewModel
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_cafe_detail.*
-import java.util.jar.Manifest
-
 
 class CafeDetailFragment : Fragment() {
 
@@ -30,12 +21,6 @@ class CafeDetailFragment : Fragment() {
 
 
     private var cafeUuid = 0
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

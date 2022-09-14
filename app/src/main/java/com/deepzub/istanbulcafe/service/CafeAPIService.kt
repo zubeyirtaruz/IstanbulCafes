@@ -8,9 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CafeAPIService {
 
-    private val BASE_URL = "https://www.netdata.com/"
+    private val baseUrl = "https://www.netdata.com/"
+
     private val api = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
@@ -18,6 +19,5 @@ class CafeAPIService {
 
     fun getData(): Single<List<Cafe>> {
         return api.getCafes()
-
     }
 }

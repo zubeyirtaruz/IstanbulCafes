@@ -7,12 +7,10 @@ import androidx.room.RoomDatabase
 import com.deepzub.istanbulcafe.model.Cafe
 import com.deepzub.istanbulcafe.model.MyFavorite
 
-@Database(entities = arrayOf(Cafe::class,MyFavorite::class), version = 1)
+@Database(entities = [Cafe::class, MyFavorite::class], version = 1)
 abstract class CafeDatabase : RoomDatabase() {
 
     abstract fun cafeDao(): CafeDao
-
-
 
     companion object{
         @Volatile private var instance : CafeDatabase? = null
@@ -24,9 +22,8 @@ abstract class CafeDatabase : RoomDatabase() {
             }
         }
 
-
         private fun makeDatabase(context: Context) = Room.databaseBuilder(
-            context.applicationContext,CafeDatabase::class.java,"IstanbulCafess"
+            context.applicationContext,CafeDatabase::class.java,"IstanbulCafes"
         ).build()
 
     }
