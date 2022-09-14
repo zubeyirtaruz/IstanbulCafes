@@ -1,9 +1,11 @@
 package com.deepzub.istanbulcafe.adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ToggleButton
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
@@ -21,6 +23,7 @@ import kotlinx.coroutines.launch
 
 
 class CafeAdapter(val cafeList: ArrayList<Cafe>): RecyclerView.Adapter<CafeAdapter.CafeViewHolder>(), CafeClickListener {
+    private var idCafeList: ArrayList<Int> = ArrayList()
 
     class CafeViewHolder(var view: ItemCafeBinding): RecyclerView.ViewHolder(view.root) {
 
@@ -34,6 +37,9 @@ class CafeAdapter(val cafeList: ArrayList<Cafe>): RecyclerView.Adapter<CafeAdapt
     }
 
     override fun onBindViewHolder(holder: CafeViewHolder, position: Int){
+
+        holder.setIsRecyclable(false)
+        
         if(position % 2 == 1){
             holder.view.rowCardView.setCardBackgroundColor(Color.GRAY)
             holder.view.itemName.setTextColor(Color.WHITE)
@@ -42,6 +48,7 @@ class CafeAdapter(val cafeList: ArrayList<Cafe>): RecyclerView.Adapter<CafeAdapt
             holder.view.itemName.setTextColor(Color.GRAY)
         }
 
+        showFavorite(holder.view.itemStar,position)
         holder.view.cafe = cafeList [position]
         holder.view.listener = this
         clickedStar(holder.view.itemStar,position)
@@ -70,7 +77,6 @@ class CafeAdapter(val cafeList: ArrayList<Cafe>): RecyclerView.Adapter<CafeAdapt
     }
 
     override fun clickedStar(v: ToggleButton, position: Int) {
-
         v.setOnCheckedChangeListener { compoundButton, b ->
             val selectedCafe = MyFavorite(cafeList[position].uuid, cafeList[position].cafeName)
             val selectedCafeId = cafeList[position].uuid
@@ -88,12 +94,26 @@ class CafeAdapter(val cafeList: ArrayList<Cafe>): RecyclerView.Adapter<CafeAdapt
         }
     }
 
+    override fun showFavorite(v: ToggleButton, position: Int) {
+        for(i in idCafeList){
+            if(i == cafeList[position].uuid){
+                v.isChecked = true
+            }
+        }
+    }
+
 
     fun filteredList(filterlist: List<Cafe>) {
         cafeList.clear()
         cafeList.addAll(filterlist)
         notifyDataSetChanged()
     }
+
+    fun updateIdFavorite(idList: List<Int>){
+        idCafeList.clear()
+        idCafeList.addAll(idList)
+    }
+
 
 }
 

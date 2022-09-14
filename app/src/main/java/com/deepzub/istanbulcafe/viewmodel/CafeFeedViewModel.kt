@@ -1,14 +1,17 @@
 package com.deepzub.istanbulcafe.viewmodel
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.deepzub.istanbulcafe.model.Cafe
+import com.deepzub.istanbulcafe.model.MyFavorite
 import com.deepzub.istanbulcafe.service.CafeAPIService
 import com.deepzub.istanbulcafe.service.CafeDatabase
 import com.deepzub.istanbulcafe.util.CustomSharedPreferences
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
@@ -22,6 +25,7 @@ class CafeFeedViewModel(application: Application) : BaseViewModel(application){
 
     val cafes = MutableLiveData<List<Cafe>>()
     val filteredCafes = MutableLiveData<List<Cafe>>()
+    val idCafe = MutableLiveData<List<Int>>()
     val cafeError = MutableLiveData<Boolean>()
     val cafeLoading = MutableLiveData<Boolean>()
 
@@ -121,6 +125,26 @@ class CafeFeedViewModel(application: Application) : BaseViewModel(application){
             }
 
         }
+
+    }
+
+    fun getIdInSQLite(){
+            val dao = CafeDatabase(getApplication()).cafeDao()
+            dao.getIdFavoriteCafes()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Consumer<List<Int>> {
+                    override fun accept(t: List<Int>?) {
+                        t?.let {
+                            idCafe.value = it
+                            /*for(k in t ){
+                                Log.e("message", k.toString())
+                            }*/
+                        }
+                    }
+                })
+
+
+
 
     }
 

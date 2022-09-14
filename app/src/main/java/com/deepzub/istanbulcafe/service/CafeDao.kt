@@ -39,6 +39,9 @@ interface CafeDao {
     @Query("SELECT * FROM myFavoriteCafes")
     fun getAllMyFavoriteCafes(): Flowable<List<MyFavorite>>
 
+    @Query("SELECT uuid FROM myFavoriteCafes")
+    fun getIdFavoriteCafes(): Flowable<List<Int>>
+
 
 
 }

@@ -52,6 +52,7 @@ class CafeFeedFragment : Fragment() {
 
 
         viewModel.refreshData()
+        viewModel.getIdInSQLite()
 
         rv.layoutManager = LinearLayoutManager(context)
         rv.adapter = cafeAdapter
@@ -100,6 +101,12 @@ class CafeFeedFragment : Fragment() {
                 }else{
                     cafeLoading.visibility = View.GONE
                 }
+            }
+        })
+
+        viewModel.idCafe.observe(viewLifecycleOwner, Observer { idCafe ->
+            idCafe.let {
+                cafeAdapter.updateIdFavorite(idCafe)
             }
         })
     }
