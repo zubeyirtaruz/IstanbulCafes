@@ -40,20 +40,12 @@ class CafeDetailFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(CafeDetailViewModel::class.java)
         viewModel.getDataFromRoom(cafeUuid)
-        viewModel.getGpsFromAPI(cafeUuid)
         observeLiveData()
 
         buttonGo.setOnClickListener {
-            var lng = 0.0f
-            var lat = 0.0f
-            viewModel.getLng()?.let {
-                lng = it
-            }
-            viewModel.getLat()?.let {
-                lat = it
-            }
 
-            val action = CafeDetailFragmentDirections.actionCafeDetailFragmentToGpsFragment(viewModel.getCafeName(),lat,lng)
+            val action =
+                CafeDetailFragmentDirections.actionCafeDetailFragmentToGpsFragment(viewModel.getCafeName(),viewModel.getCafeAdress())
             Navigation.findNavController(it).navigate(action)
         }
 

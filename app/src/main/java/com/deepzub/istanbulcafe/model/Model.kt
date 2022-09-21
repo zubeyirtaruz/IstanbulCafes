@@ -46,17 +46,4 @@ data class MyFavorite(
     @ColumnInfo(name = "cafeName")
     val cafeName: String?)
 
-data class GpsCafe(
-    @SerializedName("responseCode") // 200 ise başarılı 400 ise başarısız
-    val responseCode: Int?,
-
-    @SerializedName("identifier")
-    val identifier: String?,
-
-    @SerializedName("latitude")
-    val latitude: Float?,
-
-    @SerializedName("longitude")
-    val longitude: Float?)
-
 
