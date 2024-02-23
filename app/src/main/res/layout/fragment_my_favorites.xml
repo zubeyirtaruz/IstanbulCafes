@@ -22,7 +22,7 @@
             android:id="@+id/infoMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favori Cafe Listen Boş!\nEklemek için tıkla"
+            android:text="Favori Kafe Listen Boş!\nEklemek için tıkla"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold|italic"

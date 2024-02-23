@@ -42,7 +42,7 @@ class MapsFragment : Fragment() {
 
         try{
             val adress = geocoder.getFromLocationName(cafeAdress,1)
-            val cafe = LatLng(adress.get(0).latitude, adress.get(0).longitude)
+            val cafe = LatLng(adress!!.get(0).latitude, adress!!.get(0).longitude)
             googleMap.addMarker(MarkerOptions().position(cafe).title(cafeName))
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cafe,15f))
 

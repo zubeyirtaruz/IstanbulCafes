@@ -3,6 +3,9 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+
+        maven { url 'https://developer.huawei.com/repo/' } // Add this line
+        maven {url "https://jitpack.io"} // Add this line
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +13,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        maven { url 'https://developer.huawei.com/repo/' } // Add this line
+        maven {url "https://jitpack.io"} // Add this line
     }
 }
 rootProject.name = "IstanbulCafes"
