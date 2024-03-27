@@ -5,7 +5,6 @@ plugins {
     id "androidx.navigation.safeargs.kotlin"
     id 'kotlin-kapt'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-    id 'com.huawei.agconnect'
 }
 
 android {
@@ -20,7 +19,7 @@ android {
         applicationId "com.deepzub.istanbulcafe"
         minSdk 23
         targetSdk 33
-        versionCode 1
+        versionCode 3
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -110,15 +109,5 @@ dependencies {
     implementation "androidx.preference:preference:$preferencesVersion"
 
     implementation "com.google.android.gms:play-services-location:20.0.0"
-
-    implementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'
-
-    //Huawei Ads Prime
-    implementation 'com.huawei.hms:ads-prime:3.4.69.300'
-    //Google AdMob SDK
-    implementation 'com.google.android.gms:play-services-ads:22.6.0'
-
-    //If your app uses Google Admob SDK 20.6.0 and above versions, use :
-    implementation 'com.github.Explore-In-HMS:huawei.ads.admob_mediation:2.0.2'
 
 }

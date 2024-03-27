@@ -14,7 +14,6 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.deepzub.istanbulcafe.R
 import com.deepzub.istanbulcafe.databinding.ActivityMainBinding
-import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -28,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        MobileAds.initialize(this){}
 
         setSupportActionBar(toolbar)
 

@@ -5,8 +5,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://developer.huawei.com/repo/' }
-        maven { url "https://jitpack.io" }
     }
         dependencies {
 
@@ -15,7 +13,6 @@ buildscript {
 
             def nav_version = "2.5.1"
             classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
-            classpath 'com.huawei.agconnect:agcp:1.5.2.300'
 
         }
     }

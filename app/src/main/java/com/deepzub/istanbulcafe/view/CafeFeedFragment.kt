@@ -12,10 +12,6 @@ import com.deepzub.istanbulcafe.R
 import com.deepzub.istanbulcafe.adapter.CafeAdapter
 import com.deepzub.istanbulcafe.databinding.FragmentCafeFeedBinding
 import com.deepzub.istanbulcafe.viewmodel.CafeFeedViewModel
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
 import kotlinx.android.synthetic.main.fragment_cafe_feed.*
 
 class CafeFeedFragment : Fragment() {
@@ -27,7 +23,6 @@ class CafeFeedFragment : Fragment() {
     private var bySearchCriteria = 0
     private var byWorkingHour = 0
 
-    lateinit var mAdView : AdView
     private val TAG = "Ads"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,42 +64,6 @@ class CafeFeedFragment : Fragment() {
         }
 
         observeLiveData()
-
-        mAdView = requireActivity().findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
-        setAdListener()
-    }
-
-    private fun setAdListener() {
-        mAdView.adListener = object : AdListener() {
-            override fun onAdClicked() {
-                Log.i(TAG, "onAdClicked")
-            }
-
-            override fun onAdClosed() {
-                Log.i(TAG, "onAdClosed")
-            }
-
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.i(TAG, "onAdFailedToLoad")
-                Log.i(TAG, adError.message)
-                Log.i(TAG, adError.domain)
-                Log.i(TAG, adError.responseInfo!!.mediationAdapterClassName.toString())
-            }
-
-            override fun onAdImpression() {
-                Log.i(TAG, "onAdImpression")
-            }
-
-            override fun onAdLoaded() {
-                Log.i(TAG, "onAdLoaded")
-            }
-
-            override fun onAdOpened() {
-                Log.i(TAG, "onAdOpened")
-            }
-        }
     }
 
 
